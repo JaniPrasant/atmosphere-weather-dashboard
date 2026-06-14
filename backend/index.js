@@ -152,7 +152,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(clientDistPath));
   
   // Express v5 compliant named parameter catch-all path mapping
-  app.get('/*', (req, res) => {
+  app.get('/:any*', (req, res) => {
     res.sendFile(path.resolve(clientDistPath, 'index.html'));
   });
 }
