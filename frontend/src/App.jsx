@@ -182,15 +182,15 @@ function App() {
 
   return (
     <div
-      className={`min-h-screen bg-gradient-to-br ${getAtmosphericBackground()} font-sans antialiased transition-all duration-1000`}
+      className={`min-h-screen flex flex-col bg-gradient-to-br ${getAtmosphericBackground()} font-sans antialiased transition-all duration-1000`}
     >
       <Navbar />
-      <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8 flex-grow">
+      <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8 flex-grow flex flex-col justify-start">
         <Routes>
           <Route
             path="/"
             element={
-              <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+              <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700 w-full flex-grow">
                 <div
                   className={`flex flex-col gap-6 rounded-3xl border ${isDarkBg ? "border-white/10 bg-slate-900/40" : "border-white/40 bg-white/70"} p-5 sm:p-6 shadow-xl backdrop-blur-xl md:flex-row md:items-center md:justify-between transition-colors duration-500`}
                 >
