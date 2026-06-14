@@ -8,7 +8,7 @@ Atmosphere.io is a modern, high-performance, full-stack weather intelligence app
 
 ## 👁️ About The Project
 
-![Atmosphere.io Console Dashboard](docs/screenshot.png)
+![Atmosphere.io Console Dashboard](docs/screenshot.jpg)
 
 Atmosphere.io approaches weather tracking through a data science lens—treating global atmospheric changes as real-time matrices that can be cross-examined, aggregated, and visualized dynamically. While standard consumer applications overload viewports with intrusive ads and clumsy user journeys, Atmosphere.io introduces a professional workstation layout.
 
