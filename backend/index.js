@@ -13,15 +13,9 @@ connectDB();
 const app = express();
 app.use(cors());
 app.use(express.json());
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.resolve(__dirname, '../frontend/dist')));
-  app.get('(.*)', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../frontend/dist', 'index.html'));
-  });
-}
 
 const processWeatherData = (currentData, forecastData) => {
   const currentWeather = {
@@ -75,6 +69,9 @@ const processWeatherData = (currentData, forecastData) => {
   return { current: currentWeather, forecast };
 };
 
+/* ==========================================================
+   1. CORE API ROUTES (Must stay above production asset layers)
+   ========================================================== */
 app.get("/api/weather", async (req, res) => {
   const { city } = req.query;
 
@@ -145,5 +142,23 @@ app.use("/api/auth", authRoutes);
 app.use("/api/favorites", favoritesRoutes);
 app.use('/api/user', userRoutes);
 
+/* ==========================================================
+   2. PRODUCTION STATIC LINKING (Moved safely to the bottom)
+   ========================================================== */
+if (process.env.NODE_ENV === 'production') {
+  const clientDistPath = path.resolve(__dirname, '../frontend/dist');
+  
+  // Serve compiling static files from client build block
+  app.use(express.static(clientDistPath));
+  
+  // Express v5 compliant named parameter catch-all path mapping
+  app.get('/*', (req, res) => {
+    res.sendFile(path.resolve(clientDistPath, 'index.html'));
+  });
+}
+
+/* ==========================================================
+   3. RUN SERVICE ENGINE
+   ========================================================== */
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
