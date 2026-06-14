@@ -14,6 +14,7 @@ import ToggleSwitch from "./components/ToggleSwitch";
 import ActivityPlanner from "./components/ActivityPlanner";
 import MultiCityEngine from "./components/MultiCityEngine";
 import SolarArcTracker from "./components/SolarArcTracker";
+import Footer from "./components/Footer";
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
@@ -181,10 +182,10 @@ function App() {
 
   return (
     <div
-      className={`min-h-screen bg-gradient-to-br ${getAtmosphericBackground()} font-sans antialiased transition-all duration-1000 pb-12`}
+      className={`min-h-screen bg-gradient-to-br ${getAtmosphericBackground()} font-sans antialiased transition-all duration-1000`}
     >
       <Navbar />
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8 flex-grow">
         <Routes>
           <Route
             path="/"
@@ -402,6 +403,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
         </Routes>
       </div>
+      <Footer />
     </div>
   );
 }
